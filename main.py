@@ -8,8 +8,7 @@ import os
 def run():
   verschluessler = verschl.Verschluessler()
   key = verschluessler.generateKey()
-  ui = GUI.UI
-  window = ui.Window
+  window = GUI.Window
   window.read(timeout = 1)
   window["-OUTPUTKEY-"].update("Key: " + str(key))
   while True:
@@ -58,10 +57,6 @@ def run():
         sg.popup_error("There was an error loading the image on the right.")
     
   window.close()
-  os.remove("__pycache__/GUI.cpython-310.pyc")
-  os.remove("__pycache__/ImageConvertor.cpython-310.pyc")
-  os.remove("__pycache__/verschluessler.cpython-310.pyc")
-  os.rmdir("__pycache__")
   
 if __name__ == "__main__":
   run()

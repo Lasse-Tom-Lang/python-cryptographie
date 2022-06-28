@@ -15,7 +15,7 @@ As Libarys you have to install:
 * ``` csv ```
 * ``` math ```
 
-To use the programm you have to run the ```GenerateNumbers.csv``` file, to generate the numbers and key table. This file the must be shared with all users you want to send messages to.
+To use the programm you have to run the ```GenerateNumbers.py``` file, to generate the numbers and key table. This file the must be shared with all users you want to send messages to.
 
 ## Usage
 

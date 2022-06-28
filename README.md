@@ -1,15 +1,6 @@
 # Python Cryptographie
 
-## Table of contents
-
-* [Installation](##Installation)
-* [Usage](##Usage)
-  * [Encrypt](###Encrypt)
-  * [Decrypt](###Decrypt)
-* [Technic](##Technic)
-* [Competition](##Competition)
-
-## Installation
+## Setup
 
 This program can be run on any version of Python 3.
 

@@ -5,12 +5,9 @@ import cv2
 import shutil
 import os
 
-def run():
+def main():
   verschluessler = verschl.Verschluessler()
-  key = verschluessler.generateKey()
-  window = GUI.Window
-  window.read(timeout = 1)
-  window["-OUTPUTKEY-"].update("Key: " + str(key))
+  window = GUI.window(verschluessler.generateKey())
   while True:
     event, values = window.read(1000)
     if event == sg.WIN_CLOSED:
@@ -20,7 +17,7 @@ def run():
         shutil.move("output.png", values["-SAVEIMAGE-"])
         window["-SAVEIMAGE-"].update("")
       except:
-        sg.popup_error("There was an error while saving the image.")
+        GUI.errorPopup("There was an error while saving the image.")
     if event == "-CONVERTTOIMAGE-" and values["-FILEINPUTTARGET-"] != "" and values["-TEXTINPUT-"] != "":
       try:
         verschlText = verschluessler.verschluesseln(values["-TEXTINPUT-"], key)
@@ -31,7 +28,7 @@ def run():
         os.remove("test.txt")
         window["-SAVEIMAGEBUTTON-"].update(disabled = False)
       except:
-        sg.popup_error("There was an error encrypting the message.")
+        GUI.errorPopup("There was an error encrypting the message.")
     if event == "-CONVERTTOTEXT-" and values["-FILEINPUTTARGET2-"] != "" and values["-INPUTKEY-"] != "":
       try:
         key = int(values["-INPUTKEY-"])
@@ -42,21 +39,21 @@ def run():
         output = verschluessler.entschluesseln(text, key)
         window["-TEXTOUTPUT-"].update(output)
       except:
-        sg.popup_error("There was an error decrypting the message.")
-    if values["-FILEINPUTTARGET-"] != "":
+        GUI.errorPopup("There was an error decrypting the message.")
+    if event == "-FILEINPUTTARGET-":
       try:
         subsample = cv2.imread(values["-FILEINPUTTARGET-"]).shape[1] // 280
         window["-INPUTIMAGE-"].update(values["-FILEINPUTTARGET-"], subsample = subsample)
       except:
-        sg.popup_error("There was an error loading the image on the left.")
-    if values["-FILEINPUTTARGET2-"] != "":
+        GUI.errorPopup("Could not load image.")
+    if event == "-FILEINPUTTARGET2-":
       try:
         subsample = cv2.imread(values["-FILEINPUTTARGET2-"]).shape[1] // 280
         window["-OUTPUTIMAGE-"].update(values["-FILEINPUTTARGET2-"], subsample = subsample)
       except:
-        sg.popup_error("There was an error loading the image on the right.")
+        GUI.errorPopup("Could not load image.")
     
   window.close()
   
 if __name__ == "__main__":
-  run()
+  main()

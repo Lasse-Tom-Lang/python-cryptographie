@@ -7,7 +7,8 @@ import os
 
 def main():
   verschluessler = verschl.Verschluessler()
-  window = GUI.window(verschluessler.generateKey())
+  key = verschluessler.generateKey()
+  window = GUI.window(key)
   while True:
     event, values = window.read(1000)
     if event == sg.WIN_CLOSED:

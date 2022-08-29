@@ -1,5 +1,7 @@
 # Python Cryptographie
 
+![ExampleImage](ExampleImage.png)
+
 ## Setup
 
 This program can be run on any version of Python 3.
